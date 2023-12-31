@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Interface\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
