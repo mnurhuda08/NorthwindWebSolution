@@ -56,6 +56,16 @@ namespace Northwind.Persistence.Repositories
             throw new NotImplementedException();
         }
 
+        public Region FindAllRegionByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Region>> FindAllRegionsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Region FindRegionByI(int Id)
         {
             SqlCommandModel model = new SqlCommandModel()
@@ -66,7 +76,7 @@ namespace Northwind.Persistence.Repositories
                     new SqlCommandParameterModel() {
                         ParameterName = "@regionId",
                         DataType = DbType.Int32,
-                        Value = id
+                        Value = Id
                     }
                 }
             };
