@@ -22,13 +22,12 @@ namespace Northwind.WebAPI.Controllers
             _logger = logger;
         }
 
-
         // GET: api/<RegionController>
         [HttpGet]
         public IActionResult Get()
         {
-            try {
-
+            try
+            {
                 IEnumerable<Region> regions = _repositoryManager.RegionRepository.FindAllRegion();
 
                 //use DTO
@@ -39,20 +38,22 @@ namespace Northwind.WebAPI.Controllers
                 });
 
                 return Ok(regionDto);
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 _logger.LogError($"Error : {nameof(Get)}");
                 throw;
             }
         }
 
         // GET api/<RegionController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetRegion")]
         public IActionResult GetRegionById(int id)
         {
             try
             {
                 var regionById = _repositoryManager.RegionRepository.FindRegionByID(id);
-                if(regionById == null)
+                if (regionById == null)
                 {
                     _logger.LogError($"Data Region Not Found");
                     return BadRequest("Region Not Found");
@@ -63,32 +64,80 @@ namespace Northwind.WebAPI.Controllers
                     RegionDescription = regionById.RegionDescription,
                 };
 
-
                 return Ok(regionDTO);
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 _logger.LogError($"Error : {nameof(GetRegionById)}");
                 throw;
             }
-                
         }
 
         // POST api/<RegionController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Create([FromBody] RegionDTO regionDTO)
         {
+            //check is regionDTO null
+            if (regionDTO == null)
+            {
+                _logger.LogError("RegionDto object sent from client is NULL");
+                return BadRequest("RegionDto Object is NULL");
+            }
+
+            var region = new Region()
+            {
+                RegionId = regionDTO.RegionId,
+                RegionDescription = regionDTO.RegionDescription,
+            };
+
+            //post to db
+            _repositoryManager.RegionRepository.Insert(region);
+
+            //forward
+            return CreatedAtRoute("GetRegion", new { id = regionDTO.RegionId }, regionDTO);
         }
 
         // PUT api/<RegionController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Edit(int id, [FromBody] RegionDTO regionDTO)
         {
+            if (regionDTO == null)
+            {
+                _logger.LogError("RegionDto object sent from client is NULL");
+                return BadRequest("RegionDto Object is NULL");
+            }
+
+            var region = new Region()
+            {
+                RegionId = id,
+                RegionDescription = regionDTO.RegionDescription,
+            };
+
+            _repositoryManager.RegionRepository.Edit(region);
+
+            //forward
+            return CreatedAtRoute("GetRegion", new { id = regionDTO.RegionId }, new RegionDTO { RegionId = id, RegionDescription = region.RegionDescription });
         }
 
         // DELETE api/<RegionController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                _logger.LogError("RegionDto object sent from client is NULL");
+                return BadRequest("RegionDto Object is NULL");
+            }
+
+            var region = _repositoryManager.RegionRepository.FindRegionByID(id.Value);
+
+            if (region == null)
+            {
+                _logger.LogError($"{id} Not Found");
+                return NotFound();
+            }
+            _repositoryManager.RegionRepository.Remove(region);
+            return Ok("Delete Data Success");
         }
     }
 }
