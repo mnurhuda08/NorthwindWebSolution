@@ -11,7 +11,7 @@ namespace Northwind.Domain.Repositories
     {
         IEnumerable<Region> FindAllRegion();
         Task<IEnumerable<Region>> FindAllRegionsAsync();
-        Region FindAllRegionByID(int id);
+        Region FindRegionByID(int id);
         void Insert(Region region);
         void Edit(Region region);
         void Remove(Region region);

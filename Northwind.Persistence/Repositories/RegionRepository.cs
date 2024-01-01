@@ -66,7 +66,7 @@ namespace Northwind.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Region FindRegionByI(int Id)
+        public Region FindRegionByID(int Id)
         {
             SqlCommandModel model = new SqlCommandModel()
             {

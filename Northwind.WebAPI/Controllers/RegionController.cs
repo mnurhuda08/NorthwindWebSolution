@@ -47,9 +47,30 @@ namespace Northwind.WebAPI.Controllers
 
         // GET api/<RegionController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetRegionById(int id)
         {
-            return "value";
+            try
+            {
+                var regionById = _repositoryManager.RegionRepository.FindRegionByID(id);
+                if(regionById == null)
+                {
+                    _logger.LogError($"Data Region Not Found");
+                    return BadRequest("Region Not Found");
+                }
+                var regionDTO = new RegionDTO
+                {
+                    RegionId = regionById.RegionId,
+                    RegionDescription = regionById.RegionDescription,
+                };
+
+
+                return Ok(regionDTO);
+            } catch (Exception)
+            {
+                _logger.LogError($"Error : {nameof(GetRegionById)}");
+                throw;
+            }
+                
         }
 
         // POST api/<RegionController>
