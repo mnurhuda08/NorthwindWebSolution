@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Northwind.Contract\Northwind.Contract.csproj" />
     <ProjectReference Include="..\Northwind.Domain\Northwind.Domain.csproj" />
     <ProjectReference Include="..\Northwind.Persistence\Northwind.Persistence.csproj" />
     <ProjectReference Include="..\Northwind.Services.Abstraction\Northwind.Services.Abstraction.csproj" />

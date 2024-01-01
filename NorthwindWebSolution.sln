@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Services", "North
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Services.Abstraction", "Northwind.Services.Abstraction\Northwind.Services.Abstraction.csproj", "{F1FBBD84-1A80-4AA4-8BD9-B6DD93F1F737}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Contract", "Northwind.Contract\Northwind.Contract.csproj", "{41A4944D-B519-469D-B469-A94F7A90AA07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F1FBBD84-1A80-4AA4-8BD9-B6DD93F1F737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1FBBD84-1A80-4AA4-8BD9-B6DD93F1F737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1FBBD84-1A80-4AA4-8BD9-B6DD93F1F737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A4944D-B519-469D-B469-A94F7A90AA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A4944D-B519-469D-B469-A94F7A90AA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A4944D-B519-469D-B469-A94F7A90AA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A4944D-B519-469D-B469-A94F7A90AA07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{4E039C3E-5439-4441-804D-2BAAE0A227F9} = {4C0FB02D-5BB3-446C-8089-7D2977EB1331}
 		{B1DB5302-97FE-4118-BE1C-84DF2B0DEC0E} = {4C0FB02D-5BB3-446C-8089-7D2977EB1331}
 		{F1FBBD84-1A80-4AA4-8BD9-B6DD93F1F737} = {4C0FB02D-5BB3-446C-8089-7D2977EB1331}
+		{41A4944D-B519-469D-B469-A94F7A90AA07} = {4C0FB02D-5BB3-446C-8089-7D2977EB1331}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1103B236-E334-4EB1-AF46-223CEDABE41D}

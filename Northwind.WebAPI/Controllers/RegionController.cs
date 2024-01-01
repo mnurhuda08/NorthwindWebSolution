@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NLog;
+using Northwind.Contract.Models;
 using Northwind.Domain.Base;
 using Northwind.Domain.Entities;
 using Northwind.Services.Abstraction;
@@ -29,7 +30,15 @@ namespace Northwind.WebAPI.Controllers
             try {
 
                 IEnumerable<Region> regions = _repositoryManager.RegionRepository.FindAllRegion();
-                return Ok(regions);
+
+                //use DTO
+                var regionDto = regions.Select(r => new RegionDTO
+                {
+                    RegionId = r.RegionId,
+                    RegionDescription = r.RegionDescription,
+                });
+
+                return Ok(regionDto);
             } catch (Exception) {
                 _logger.LogError($"Error : {nameof(Get)}");
                 throw;
